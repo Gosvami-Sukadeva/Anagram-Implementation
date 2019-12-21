@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Anagram Implementation</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      function isAnagram(str1, str2) {
+        if (str1.length !== str2.length) {
+          return false;
+        }
+        // create the character count of the string
+        var str1count = {};
+        Array.prototype.forEach.call(str1, function(ch) {
+          str1count[ch] = str1count[ch] ? 1 + str1count[ch] : 1;
+        });
+        //compare the character count with the second string
+        var str2len = str2.length;
+        for (var i = 0; i < str2len; i++) {
+          if (!str1count[str2[i]]) {
+            return false;
+          } else {
+            str1count[str2[i]] -= 1;
+          }
+        }
+        return true;
+      }
+      console.log(isAnagram("dog", "god")); //true
+      console.log(isAnagram("foo", "bar")); //false
+    </script>
+  </body>
+</html>
